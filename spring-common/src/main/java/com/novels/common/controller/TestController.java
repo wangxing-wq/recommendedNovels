@@ -14,9 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
+    /**
+     * 测试类
+     * @param name 上传姓名
+     * @param sex  上传性别
+     * @return 返回值
+     */
     @GetMapping("/test")
-    public Result<Void> ok(String name,String sex) {
-        return Result.success("name",name,"sex",sex);
+    public Result<Void> ok(String name, String sex) {
+        return Result.success("name", name, "sex", sex);
     }
 
 }
