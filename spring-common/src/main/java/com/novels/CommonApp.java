@@ -1,4 +1,4 @@
-package com.novels.comments;
+package com.novels;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,8 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Hello world!
  */
 @SpringBootApplication
-public class App {
+public class CommonApp {
     public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
+        SpringApplication.run(CommonApp.class, args);
     }
 }

@@ -1,3 +1,7 @@
-flyway:
-  baseline-on-migrate: true
-  baseline-version: 20230405001
+#flyway:
+#  baseline-on-migrate: true
+#  baseline-version: 20230405001
+common:
+  log-helper:
+    enable: true
+    scanner: com.novels.common

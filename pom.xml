@@ -9,7 +9,7 @@
     <name>recommendedNovels</name>
     <description>recommendedNovels</description>
     <modules>
-        <module>spring-common</module>
+<!--        <module>spring-common</module>-->
         <module>gateway-server</module>
         <module>novle-server</module>
         <module>user-server</module>

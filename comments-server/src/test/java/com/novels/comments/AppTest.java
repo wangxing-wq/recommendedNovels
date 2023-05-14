@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
+ * README.md
  * Unit test for simple App.
  */
 public class AppTest
