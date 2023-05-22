@@ -1,7 +1,7 @@
 package com.novels.common.controller;
 
 import com.novels.common.annotation.LogHelper;
-import com.wx.common.core.bean.Result;
+import com.novels.common.bean.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
