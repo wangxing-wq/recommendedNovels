@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: gateway-server
+  cloud:
+#   ## 路由配置
+    gateway:
+      routes:
+        - id: after_route
+          uri: https://example.org
+          predicates:
+            - name: Cookie
+              args:
+                name: mycookie
+                regexp: mycookievalue
+## 注册配置中心和注册中心
+    nacos:
+      config:
+        server-addr: http://124.223.64.141:8848/
+        namespace: dev
+        group: dev
+        name: gateway-server.yml
+      discovery:
+        server-addr: http://124.223.64.141:8848/
+        namespace: gateway-server
+        group: dev
+  main:
+    web-application-type: reactive
+#          ${prefix}-${spring.profiles.active}.${file-extension}
+server:
+  port: 10001

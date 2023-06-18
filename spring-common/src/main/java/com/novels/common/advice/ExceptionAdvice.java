@@ -1,9 +1,48 @@
-package com.novels.common.advice;
+package com.novels.user.advic;
+
+import com.novels.common.bean.Result;
+import com.novels.common.enums.SystemConstantEnum;
+import com.wx.common.exception.BaseException;
+import com.wx.common.exception.BizException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * 统一异常处理
  * @author 王兴
- * @date 2023/5/15 22:10
+ * @date 2023/5/21 3:10
  */
+@Slf4j
+@RestControllerAdvice
 public class ExceptionAdvice {
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public Result<Void> messageNotReadable(HttpMessageNotReadableException messageNotReadableException) {
+        log.info("请检查:异常{}",messageNotReadableException.getMessage());
+        return Result.fail();
+    }
+
+
+    @ExceptionHandler(BizException.class)
+    public Result<Void> bizException(BizException bizException) {
+        // BaseException
+        log.error("{}",bizException.getMessage(),bizException);
+        return Result.fail(bizException);
+    }
+
+    @ExceptionHandler(BaseException.class)
+    public Result<Void> baseException(BaseException baseException) {
+        // BaseException
+        log.info("{}",baseException.getMessage());
+        return Result.fail(baseException);
+    }
+
+    @ExceptionHandler({Exception.class,Throwable.class})
+    public Result<Void> exception(Throwable throwable) {
+        return Result.fail(new BizException(SystemConstantEnum.FAIL,throwable));
+    }
+
+
+
 }

@@ -55,8 +55,8 @@ public class UserController {
      * @return the result
      */
     @PostMapping("logout")
-    public Result<Void> logout() {
-        return Result.success();
+    public Result<TokenDto> logout(@RequestBody TokenDto tokenDto) {
+        return Result.success(userService.logout(tokenDto));
     }
 
     /**
@@ -70,17 +70,17 @@ public class UserController {
     }
 
     /**
-     * 校验令牌是否失效
+     * 校验令牌
      * @return the result
      */
-    @PostMapping("expire")
-    public Result<Void> expire(String token) {
-        return Result.success(userService.expire(token));
+    @PostMapping("verify")
+    public Result<Void> verify(String token) {
+        return Result.success(userService.verify(token));
     }
 
     @PostMapping("show")
-    public Result<String> show(String token) {
-        return Result.success(tokenHelper.decodeJwt(token, User.class));
+    public Result<String> show(@RequestBody TokenDto tokenDto) {
+        return Result.success("AccessToken",tokenHelper.decodeJwt(tokenDto.getAccessToken(), User.class),"RefreshToken",tokenHelper.decodeJwt(tokenDto.getRefreshToken(),User.class));
     }
 
 

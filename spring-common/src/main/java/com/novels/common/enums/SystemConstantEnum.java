@@ -26,8 +26,8 @@ public enum SystemConstantEnum implements Constant {
     INSERT_EXCEPTION("000004", "插入操作异常"),
     UPDATE_EXCEPTION("000005", "更新操作异常"),
     SELECT_EXCEPTION("000006", "查询操作异常"),
-    TOKEN_EXPIRE("000006", "查询操作异常"),
     TOKEN_INVALID("000006", "token无效"),
+    TOKEN_EXPIRE("000007", "token失效"),
     ;
 
     /**

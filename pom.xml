@@ -22,6 +22,8 @@
         <spring-boot.version>2.6.13</spring-boot.version>
         <spring-cloud-alibaba.version>2021.0.5.0</spring-cloud-alibaba.version>
         <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <lombok.version>1.18.24</lombok.version>
     </properties>
     <dependencies>
         <!--        <dependency>-->
@@ -54,7 +56,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
-
         <!--   持久层依赖     -->
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
@@ -66,10 +67,6 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
 <!--        <dependency>-->
 <!--            <groupId>org.flywaydb</groupId>-->
 <!--            <artifactId>flyway-core</artifactId>-->
@@ -78,7 +75,6 @@
 <!--            <groupId>org.flywaydb</groupId>-->
 <!--            <artifactId>flyway-mysql</artifactId>-->
 <!--        </dependency>-->
-
         <!--    测试    -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

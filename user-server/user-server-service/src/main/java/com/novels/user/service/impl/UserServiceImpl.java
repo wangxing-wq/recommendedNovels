@@ -50,16 +50,26 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
+    public TokenDto logout(TokenDto tokenDto) {
+        String accessToken = tokenDto.getAccessToken();
+        String refreshToken = tokenDto.getRefreshToken();
+        tokenDto.setAccessToken(tokenHelper.expire(accessToken,User.class));
+        tokenDto.setAccessToken(tokenHelper.expire(refreshToken,User.class));
+        return tokenDto;
+    }
+
+    @Override
     public TokenDto refreshToken(TokenDto tokenDto) {
-        // 判断token 是否失效,失效后判断refreshToken是否失效,\
-        boolean accessTokenExpire = tokenHelper.expire(tokenDto.getAccessToken());
-        boolean refreshTokenExpire = tokenHelper.expire(tokenDto.getRefreshToken());
-        if (accessTokenExpire && refreshTokenExpire) {
+        // 判断token 是否失效,失效后判断refreshToken是否失效
+        boolean accessTokenExpire = tokenHelper.isVerify(tokenDto.getAccessToken());
+        boolean refreshTokenExpire = tokenHelper.isVerify(tokenDto.getRefreshToken());
+        if (!accessTokenExpire || !refreshTokenExpire) {
             throw new BizException(SystemConstantEnum.TOKEN_EXPIRE);
         }
-        if (!refreshTokenExpire) {
-            //
+        if (!tokenHelper.isExpire(tokenDto.getRefreshToken(), User.class)) {
             tokenDto.setAccessToken(tokenHelper.renewal(tokenDto.getRefreshToken(), User.class));
+        } else {
+            throw new BizException(SystemConstantEnum.TOKEN_EXPIRE);
         }
         // 如果有效则刷新
         // 如果两者都是失效丢出,token无效,请重新登录
@@ -67,8 +77,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public boolean expire(String token) {
-        return tokenHelper.expire(token);
+    public boolean verify(String token) {
+        return tokenHelper.isVerify(token);
     }
 
 

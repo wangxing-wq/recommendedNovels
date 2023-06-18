@@ -19,8 +19,28 @@ public interface UserService extends IService<User> {
      */
     TokenDto login(LoginVO loginVO);
 
+    /**
+     * 登出账号
+     * @param tokenDto token携带bean
+     * @return 已登出
+     */
+    TokenDto logout(TokenDto tokenDto);
 
+    /**
+     * 刷新令牌,续期时间为配置时间,默认30minute
+     *
+     * @param tokenDto 需要刷新的token
+     * @return 刷新后的token
+     */
     TokenDto refreshToken(TokenDto tokenDto);
 
-    boolean expire(String token);
+    /**
+     * 是否过期
+     *
+     * @param token 需要验证是否过期的token
+     * @return 结果
+     */
+    boolean verify(String token);
+
+
 }

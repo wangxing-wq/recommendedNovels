@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 
 import java.security.SecureRandom;
 import java.time.Instant;
-import java.time.temporal.TemporalAmount;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -69,12 +68,14 @@ public class TokenHelper {
     }
 
     public String create(Object element) {
-        return builderToken(element,jwtProperties.getExpirationTime());
+        return builderToken(element,Instant.now().plus(jwtProperties.getExpirationTime()));
     }
+
     public String createRefreshToken(Object element) {
-        return builderToken(element,jwtProperties.getExpirationTime());
+        return builderToken(element,Instant.now().plus(jwtProperties.getRefreshExpirationTime()));
     }
-    private String builderToken(Object element, TemporalAmount expirationTime) {
+
+    private String builderToken(Object element, Instant expiresAt) {
         Map<String, Object> header = new HashMap<>();
         header.put("alg", "HS256");
         header.put("typ", "JWT");
@@ -82,7 +83,7 @@ public class TokenHelper {
                 .withHeader(header)
                 .withSubject(jwtProperties.getSubject())
                 .withAudience(jwtProperties.getAudience())
-                .withExpiresAt(Instant.now().plus(expirationTime))
+                .withExpiresAt(expiresAt)
                 .withNotBefore(jwtProperties.getNotBefore())
                 .withIssuer(jwtProperties.getIssuer())
                 .withIssuedAt(Instant.now())
@@ -104,12 +105,31 @@ public class TokenHelper {
         return verify;
     }
 
-    public boolean expire(String token) {
-        return !Objects.nonNull(verify(token));
+    public boolean isVerify(String token) {
+        return Objects.nonNull(token);
     }
 
     /**
-     * 支持accessToken续期
+     * 是否过期
+     * @param token 令牌
+     * @return 结果
+     */
+    public <T>boolean isExpire(String token,Class<T> tClass) {
+        JwtVo<T> jwtVo = null;
+        try {
+            jwtVo = decodeJwt(token, tClass);
+        } catch (Exception e) {
+            return false;
+        }
+        return jwtVo.getExpiresAt().compareTo(Instant.now()) < 0;
+    }
+
+    public <T>String expire(String token,Class<T> tClass) {
+        return builderToken(decodeJwt(token,tClass),Instant.now());
+    }
+
+    /**2023-06-01T13:07:01Z  2023-05-25T13:11:05Z
+     * 支持accessToken续期,续期时间为配置时间,默认3minute
      * @param token refreshToken
      * @return 续期后的accessToken
      */

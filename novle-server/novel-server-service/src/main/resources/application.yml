@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: novel-server
+  # 数据源信息
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://124.223.64.141:3306/novels?characterEncoding=utf8&connectTimeout=1000&socketTimeout=3000&autoReconnect=true&useUnicode=true&useSSL=false&serverTimezone=UTC
+    #jdbc:h2:mem:test #配置h2数据库的连接地址
+    username: root
+    password: root
+  # redis数据库信息
+  #  redis:
+  #    host: 124.223.64.141
+  #    port: 6379
+  cloud:
+    nacos:
+      config:
+        server-addr: http://124.223.64.141:8848/
+      discovery:
+        group: dev
+        namespace: 40215aa9-7230-4766-9461-bc52caed358d
+        server-addr: http://124.223.64.141:8848/
+server:
+  port: 8080
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:/mapper/**/*.xml
+  type-aliases-package: com.novels.user.domain
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+common:
+  log-helper:
+    enable: true
+    scanner: com.novels.common
+jwt:
+  audience: client
+  issuer: ${spring.application.name}
+  jwt-id: 1
+  subject: user
+  expiration-time: 5m
