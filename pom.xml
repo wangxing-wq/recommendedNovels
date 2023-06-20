@@ -94,11 +94,6 @@
             <optional>true</optional>
         </dependency>
         <dependency>
-            <groupId>com.wx</groupId>
-            <artifactId>common</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>com.novels</groupId>
             <artifactId>spring-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -111,7 +106,7 @@
 
     </dependencies>
 
-    <!--  依赖管理  -->
+    <!--  依赖版本管理  -->
     <dependencyManagement>
         <dependencies>
             <dependency>
