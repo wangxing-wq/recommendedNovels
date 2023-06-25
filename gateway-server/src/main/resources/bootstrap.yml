@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    ## 注册配置中心和注册中心
+    nacos:
+      config:
+        server-addr: http://124.223.64.141:8848/
+        namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
+        file-extension: yml
+        group: gateway
+#        shared-configs:
+#          - data-id: common
+#            refresh: true
+        name:
+      discovery:
+        server-addr: http://124.223.64.141:8848/
+        namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
+        group: dev
+    loadbalancer:
+      nacos:
+        enabled: true
+  main:
+    web-application-type: reactive
+#          ${prefix}-${spring.profiles.active}.${file-extension} 这个是不指定spring.cloud.nacos.config.name 时会读取的文件
+server:
+  port: 80

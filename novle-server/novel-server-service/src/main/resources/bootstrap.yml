@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: novel-server
+  # 数据源信息
+  cloud:
+    nacos:
+      config:
+        server-addr: http://124.223.64.141:8848/
+        namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
+        group: novel
+        file-extension: yml
+        shared-configs:
+          - data-id: common
+            refresh: true
+      discovery:
+        group: dev
+        namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
+        server-addr: http://124.223.64.141:8848/
+
+server:
+  port: 11001
