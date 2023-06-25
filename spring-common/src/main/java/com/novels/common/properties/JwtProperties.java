@@ -9,15 +9,15 @@ import java.time.Instant;
 import java.time.LocalDate;
 
 /**
- * "iss"（Issuer）：JWT 的发行者。
- * "sub"（Subject）：JWT 的主题，即 JWT 所代表的实体。
- * "aud"（Audience）：JWT 的受众，即预期接收 JWT 的一方。
- * "exp"（Expiration Time）：JWT 的过期时间，表示 JWT 失效的时间。
- * "nbf"（Not Before）：JWT 的生效时间，表示 JWT 在此时间之前无法使用。
- * "iat"（Issued At）：JWT 的签发时间，表示 JWT 的创建时间。
- * "jti"（JWT ID）：JWT 的唯一标识符，用于避免重复使用 JWT。
  * @author 王兴
  * @date 2023 /5/21 20:02
+ * "iss"（Issuer）：JWT 的发行者。 <br/>
+ * "sub"（Subject）：JWT 的主题，即 JWT 所代表的实体。<br/>
+ * "aud"（Audience）：JWT 的受众，即预期接收 JWT 的一方。<br/>
+ * "exp"（Expiration Time）：JWT 的过期时间，表示 JWT 失效的时间。<br/>
+ * "nbf"（Not Before）：JWT 的生效时间，表示 JWT 在此时间之前无法使用。<br/>
+ * "iat"（Issued At）：JWT 的签发时间，表示 JWT 的创建时间。<br/>
+ * "jti"（JWT ID）：JWT 的唯一标识符，用于避免重复使用 JWT。<br/>
  */
 @Data
 @Component
@@ -58,6 +58,16 @@ public class JwtProperties {
      * "jti"（JWT ID）：JWT 的唯一标识符，用于避免重复使用 JWT。
      */
     private String jwtId;
+
+    /**
+     * 公钥
+     */
+    private String publicKeyString;
+
+    /**
+     * 私钥
+     */
+    private String privateKeyString;
 
 
 }

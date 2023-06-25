@@ -5,6 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * @author 22343
+ */
 public class BizService<K, B> {
     private BaseDao<K, B> baseDao;
 
