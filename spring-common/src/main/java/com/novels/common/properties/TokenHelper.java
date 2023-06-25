@@ -22,8 +22,7 @@ import java.util.*;
  */
 @Slf4j
 @Component
-public class TokenUtil {
-
+public class TokenHelper {
 
     private final JwtProperties jwtProperties;
 
@@ -38,13 +37,11 @@ public class TokenUtil {
     private static final int KEY_LENGTH = 256;
 
 
-    public TokenUtil(JwtProperties jwtProperties,String publicKeyString,String privateKeyString) {
+    public TokenHelper(JwtProperties jwtProperties) {
         try {
-            publicKey = (RSAPublicKey) getPublicKey(publicKeyString);
-            privateKey = (RSAPrivateKey) getPrivateKey(privateKeyString);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidKeySpecException e) {
+            publicKey = (RSAPublicKey) getPublicKey(jwtProperties.getPublicKeyString());
+            privateKey = (RSAPrivateKey) getPrivateKey(jwtProperties.getPrivateKeyString());
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new RuntimeException(e);
         }
         this.jwtProperties = jwtProperties;

@@ -80,7 +80,7 @@ public class UserController {
 
     @PostMapping("show")
     public Result<String> show(@RequestBody TokenDto tokenDto) {
-        return Result.success("AccessToken",tokenHelper.decodeJwt(tokenDto.getAccessToken(), User.class),"RefreshToken",tokenHelper.decodeJwt(tokenDto.getRefreshToken(),User.class));
+        return Result.success("AccessToken",tokenHelper.decodeJwt(tokenDto.getAccessToken()),"RefreshToken",tokenHelper.decodeJwt(tokenDto.getRefreshToken()));
     }
 
 
