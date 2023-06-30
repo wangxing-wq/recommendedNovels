@@ -5,7 +5,6 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import org.junit.Test;
 
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
@@ -15,8 +14,6 @@ import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 公私密钥
@@ -61,6 +58,8 @@ public class JwtTest {
         // 获取公钥和私钥字符串
         String privateKeyString = getPrivateKeyString(keyPair.getPrivate());
         String publicKeyString = getPublicKeyString(keyPair.getPublic());
+        System.out.println(privateKeyString);
+        System.out.println(publicKeyString);
         Algorithm algorithm1 = Algorithm.RSA256(null, (RSAPrivateKey) getPrivateKey(privateKeyString));
         Algorithm algorithm2 = Algorithm.RSA256((RSAPublicKey) getPublicKey(privateKeyString), null);
         // 加密 JWT

@@ -37,7 +37,11 @@ class TokenUtilTest {
         UserInfo userInfo = new UserInfo();
         userInfo.setId("111");
         userInfo.setUsername("张三");
-        TokenUtil tokenUtil = new TokenUtil(jwtProperties,publicKeyString,privateKeyString);
+        jwtProperties.setPrivateKeyString(privateKeyString);
+        jwtProperties.setPublicKeyString(publicKeyString);
+        log.info("private:{}", jwtProperties.getPrivateKeyString());
+        log.info("public:{}", jwtProperties.getPublicKeyString());
+        TokenHelper tokenUtil = new TokenHelper(jwtProperties);
         String accessToken = tokenUtil.create(userInfo);
         String refreshToken = tokenUtil.createRefreshToken(userInfo);
         log.info("accessToken:{}",accessToken);

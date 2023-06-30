@@ -6,6 +6,7 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
@@ -24,11 +25,12 @@ import java.util.*;
 @Component
 public class TokenHelper {
 
+    /**
+     * JWT 存放请求头你名称
+     */
+    public static final String AUTHORIZATION = "Authorization";
+
     private final JwtProperties jwtProperties;
-
-
-    private Algorithm algorithm = null;
-
     private RSAPublicKey publicKey;
     private RSAPrivateKey privateKey;
 
@@ -39,8 +41,16 @@ public class TokenHelper {
 
     public TokenHelper(JwtProperties jwtProperties) {
         try {
-            publicKey = (RSAPublicKey) getPublicKey(jwtProperties.getPublicKeyString());
-            privateKey = (RSAPrivateKey) getPrivateKey(jwtProperties.getPrivateKeyString());
+            if (StringUtils.hasLength(jwtProperties.getPublicKeyString())) {
+                publicKey = (RSAPublicKey) getPublicKey(jwtProperties.getPublicKeyString());
+            } else {
+                log.warn("no public key config");
+            }
+            if (StringUtils.hasLength(jwtProperties.getPrivateKeyString())) {
+                privateKey = (RSAPrivateKey) getPrivateKey(jwtProperties.getPrivateKeyString());
+            } else {
+                log.warn("no private key config");
+            }
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             throw new RuntimeException(e);
         }
@@ -128,7 +138,7 @@ public class TokenHelper {
     public DecodedJWT decodeJwt(String token) {
         // 验证token 解析内容失败的丢出通用的校验,TokenNoIllegal
         DecodedJWT verify;
-        algorithm = Algorithm.RSA256(publicKey, null);
+        Algorithm algorithm = Algorithm.RSA256(publicKey, null);
         try {
             verify = JWT.require(algorithm)
                     .build()
