@@ -23,7 +23,8 @@ import java.util.List;
  */
 @Slf4j
 @EnableDiscoveryClient
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class,
+        scanBasePackages = {"com.novels.common","com.novels.gateway"})
 public class GatewayServerApp implements CommandLineRunner {
 
     private final DiscoveryClient discoveryClient;

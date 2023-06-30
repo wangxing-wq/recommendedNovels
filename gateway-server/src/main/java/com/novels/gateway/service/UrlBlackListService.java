@@ -19,7 +19,7 @@ public class UrlBlackListService {
     private final List<String> blackListArrayList = Lists.newCopyOnWriteArrayList();
     private final List<String> whiteListArrayList = Lists.newCopyOnWriteArrayList();
 
-    private final AntPathMatcher pathMatcher = new AntPathMatcher();;
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
 
     /**
      * 校验这个urls,是否全部符合黑名单
@@ -47,7 +47,7 @@ public class UrlBlackListService {
         // 此处只取缓存池查询,刷新缓存池的任务交给定时任务完成,默认最多缓存1024个服务
         for (String url : split) {
             // 校验这个URL是否是OK的
-            if (!stringList.contains(url) || !isMatch(url,stringList)) {
+            if (!stringList.contains(url) && !isMatch(url,stringList)) {
                 return false;
             }
         }
