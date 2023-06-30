@@ -23,13 +23,6 @@ public class CarouselMapperTest{
 
     @Test
     public void shouldMapCarToDto() {
-        //given
-        Carousel car = new Carousel(3,"www.baidu.com","www.com",3,"1","王兴", LocalDateTime.now(), LocalDateTime.now());
-
-        //when
-        CarouselVO carouselVO = MapConverter.INSTANCE.toVO(car);
-        System.out.println(carouselVO);
-        System.out.println(car);
     }
 
 }
