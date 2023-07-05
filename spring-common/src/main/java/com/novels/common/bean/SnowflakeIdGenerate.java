@@ -36,7 +36,7 @@ public class SnowflakeIdGenerate implements IdGenerate {
     public SnowflakeIdGenerate (ClusterIdProperties clusterIdProperties) {
         maxServerNoOffset = clusterIdProperties.getMaxMachineNoBit();
         maxSeqNoOffset = clusterIdProperties.getMaxMachineNoBit() + clusterIdProperties.getMaxServerNoBit();
-        if (clusterIdProperties.getMaxSeqNoBit() + clusterIdProperties.getMaxServerNoBit() + clusterIdProperties.getMaxMachineNoBit() == 22) {
+        if (clusterIdProperties.getMaxSeqNoBit() + clusterIdProperties.getMaxServerNoBit() + clusterIdProperties.getMaxMachineNoBit() != 22) {
             throw new IllegalArgumentException("config bit ill not required");
         }
         if (clusterIdProperties.getServerId() > ~(-1L << clusterIdProperties.getMaxServerNoBit())) {

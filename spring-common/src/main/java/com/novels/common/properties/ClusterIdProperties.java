@@ -17,31 +17,31 @@ public class ClusterIdProperties {
     /**
      * 项目的服务ID
      */
-    private final int serverId;
+    private int serverId;
 
     /**
      * 项目的机器ID
      */
-    private final int machine;
+    private int machine;
 
     @Value("${spring.application.name}")
-    private final String prefix;
+    private String prefix;
 
 
     /**
      * 最大机器号,默认五位比特位
      */
-    private final int maxMachineNoBit = 5;
+    private int maxMachineNoBit = 5;
 
     /**
      * 最大服务号,默认五位比特位
      */
-    private final int maxServerNoBit = 5;
+    private int maxServerNoBit = 5;
 
     /**
      * 最大序列号,默认12比特位
      */
-    private final long maxSeqNoBit = 12;
+    private long maxSeqNoBit = 12;
 
     private final long startTime = 1676332800000L;
 
