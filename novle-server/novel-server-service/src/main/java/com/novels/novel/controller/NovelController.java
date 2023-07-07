@@ -1,5 +1,6 @@
 package com.novels.novel.controller;
 
+import com.novels.common.annotation.LogHelper;
 import com.novels.common.bean.Result;
 import com.novels.novel.domain.model.Carousel;
 import com.novels.novel.domain.model.Novel;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 王兴
  * @date 2023/5/28 21:46
  */
+@LogHelper
 @RestController
 @RequestMapping("/api/1.0/novel/book")
 public class NovelController {

@@ -1,0 +1,8 @@
+cluster:
+  id:
+    serverId: 1
+    machine: 1
+common:
+  log-helper:
+    enable: true
+    scanner: com.novels.novel
