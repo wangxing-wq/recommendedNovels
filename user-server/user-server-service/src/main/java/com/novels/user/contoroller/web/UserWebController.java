@@ -1,9 +1,9 @@
-package com.novels.user.contoroller;
+package com.novels.user.contoroller.web;
 
 import com.novels.common.bean.Result;
 import com.novels.common.domain.dto.TokenDto;
 import com.novels.common.properties.TokenHelper;
-import com.novels.user.domain.model.User;
+import com.novels.user.constant.ApiVersionConstant;
 import com.novels.user.domain.vo.LoginVO;
 import com.novels.user.service.UserService;
 import org.springframework.web.bind.annotation.*;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Objects;
 
 /**
- * 用户操作
+ * Web用户操作
  * @author 王兴
  * @date 2023 /5/19 0:45
  */
 @RestController
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping(ApiVersionConstant.ONE + "auth")
+public class UserWebController {
 
     private final UserService userService;
     private final TokenHelper tokenHelper;
@@ -29,7 +29,7 @@ public class UserController {
      * @param userService the user service
      * @param tokenHelper the token helper
      */
-    public UserController(UserService userService, TokenHelper tokenHelper) {
+    public UserWebController(UserService userService, TokenHelper tokenHelper) {
         this.userService = userService;
         this.tokenHelper = tokenHelper;
     }

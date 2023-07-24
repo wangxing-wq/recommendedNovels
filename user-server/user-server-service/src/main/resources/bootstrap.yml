@@ -1,0 +1,19 @@
+server:
+  port: 10001
+spring:
+  application:
+    name: user-server
+  cloud:
+    nacos:
+      config:
+        server-addr: http://124.223.64.141:8848/
+        group: user
+        namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
+        shared-configs:
+          - data-id: common.yml
+            refresh: true
+        file-extension: yml
+      discovery:
+        group: dev
+        namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
+        server-addr: http://124.223.64.141:8848/
