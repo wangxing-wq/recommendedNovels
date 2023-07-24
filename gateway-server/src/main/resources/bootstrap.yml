@@ -9,10 +9,13 @@ spring:
         namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
         file-extension: yml
         group: gateway
-#        shared-configs:
-#          - data-id: common
-#            refresh: true
-        name:
+        shared-configs:
+          - data-id: common.yml
+            refresh: true
+        extension-configs:
+          - data-id: gateway-auth.yml
+            refresh: true
+            group: gateway
       discovery:
         server-addr: http://124.223.64.141:8848/
         namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
@@ -25,3 +28,7 @@ spring:
 #          ${prefix}-${spring.profiles.active}.${file-extension} 这个是不指定spring.cloud.nacos.config.name 时会读取的文件
 server:
   port: 80
+  error:
+    include-stacktrace: never
+    whitelabel:
+      enabled: false

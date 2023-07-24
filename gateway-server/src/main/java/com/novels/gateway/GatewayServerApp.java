@@ -1,8 +1,6 @@
 package com.novels.gateway;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,10 +9,10 @@ import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -23,8 +21,9 @@ import java.util.List;
  */
 @Slf4j
 @EnableDiscoveryClient
+@EnableFeignClients("com.novels.api.feign")
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class,
-        scanBasePackages = {"com.novels.common","com.novels.gateway"})
+        scanBasePackages = {"com.novels.common","com.novels.gateway","com.novels.api"})
 public class GatewayServerApp implements CommandLineRunner {
 
     private final DiscoveryClient discoveryClient;
