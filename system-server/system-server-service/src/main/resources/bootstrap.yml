@@ -1,0 +1,20 @@
+server:
+  port: 9001
+spring:
+  application:
+    name: system-server
+  # 微服务信息,nacos 配置需要配置到bootstrap文件中
+  cloud:
+    nacos:
+      config:
+        server-addr: http://124.223.64.141:8848/
+        namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
+        group: system
+        file-extension: yml
+        shared-configs:
+          - data-id: common.yml
+            group: DEFAULT_GROUP
+      discovery:
+        group: dev
+        namespace: 5814311e-b222-447a-b26c-53a1e908b6bc
+        server-addr: http://124.223.64.141:8848/

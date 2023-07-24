@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.novels.system.dao.WhitelistMapper">
+    <resultMap id="BaseResultMap" type="com.novels.system.domain.model.Whitelist">
+        <!--@mbg.generated-->
+        <!--@Table whitelist-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="value" jdbcType="VARCHAR" property="value"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="effective_at" jdbcType="TIMESTAMP" property="effectiveAt"/>
+        <result column="expires_at" jdbcType="TIMESTAMP" property="expiresAt"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,
+        `type`,
+        `value`,
+        description,
+        effective_at,
+        expires_at,
+        created_at,
+        updated_at
+    </sql>
+</mapper>
