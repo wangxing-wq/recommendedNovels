@@ -14,6 +14,9 @@
         <module>novle-server</module>
         <module>user-server</module>
         <module>comments-server</module>
+        <module>system-server</module>
+        <module>system-server/system-server-service</module>
+        <module>system-server/system-server-api</module>
     </modules>
     <properties>
         <java.version>1.8</java.version>
